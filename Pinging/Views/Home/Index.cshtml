@@ -1,0 +1,63 @@
+﻿@model List<PingGroupViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<a asp-action="Reflesh" class="btn btn-outline-secondary" style="margin-top:30px;">Reflesh</a>
+<div class="table-responsive">
+
+    <table id="example" class="uk-table uk-table-hover uk-table-stripeds" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>RTT1</th>
+                <th>RTT1</th>
+                <th>RTT3</th>
+                <th>RTT4</th>
+                <th>RTT5</th>
+                <th>Tracert</th>
+                <th>Modem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        @item.Address
+                    </td>
+
+                    <td>
+                        @foreach (var status in item.Status)
+                        {
+                            @if (status == "Success")
+                            {
+                                <span class="badge badge-success">@status</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger">@status</span>
+                            }
+                        }
+                    </td>
+                    <td>@item.RTT1</td>
+                    <td>@item.RTT2</td>
+                    <td>@item.RTT3</td>
+                    <td>@item.RTT4</td>
+                    <td>@item.RTT5</td>
+                    <td id="test">
+                        <a class="btn btn-secondary" id="@item.Address" style="color:#fff;" aria-disabled="true">Tracert</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" href="@item.Modem">Modem</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

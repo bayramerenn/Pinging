@@ -1,0 +1,48 @@
+﻿@model IpViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<br />
+<br />
+<h4 style="text-align:center;margin-top:30px;">Ip Update</h4>
+<br />
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alet alert-success">
+                @TempData["Message"].ToString()
+            </div>
+        }
+    <form asp-action="Update" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="IpAddress" class="control-label"></label>
+            <input asp-for="IpAddress" class="form-control" />
+            <span asp-validation-for="IpAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IpHostName" class="control-label"></label>
+            <input asp-for="IpHostName" class="form-control" />
+            <span asp-validation-for="IpHostName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Port" class="control-label"></label>
+            <input asp-for="Port" class="form-control" />
+            <span asp-validation-for="Port" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AdslTypeId"></label>
+            <select asp-for="AdslTypeId" class="form-control"
+                    asp-items="@Model.AdslType">
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+    </div>
+</div>
+
